@@ -1,6 +1,6 @@
 
 
-function emailVerify(email, database) {
+function emailVerify(email, db) {
   for (userId in db) {
     if (email === db[userId].email) {
       return db[userId];

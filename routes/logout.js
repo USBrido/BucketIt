@@ -2,6 +2,11 @@ const express = require('express');
 const router  = express.Router();
 
 module.exports = (db) => {
+  router.post("/logout", (req, res) => {
+    req.session = null
+    res.redirect('/');
+  })
+
   // router.get("/", (req, res) => {
   //   db.query(`SELECT * FROM users;`)
   //     .then(data => {

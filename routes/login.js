@@ -2,6 +2,15 @@ const express = require('express');
 const router  = express.Router();
 
 module.exports = (db) => {
+
+  //set login
+  router.get("/login", (req, res) => {
+    if (req.session.userId) {
+      res.redirect('/main/userId');
+    } else {
+      res.render("/main");
+    }
+
   // router.get("/", (req, res) => {
   //   db.query(`SELECT * FROM users;`)
   //     .then(data => {
@@ -15,4 +24,4 @@ module.exports = (db) => {
   //     });
   // });
   return router;
-};
+})};

@@ -1,0 +1,16 @@
+INSERT INTO item(user_id, item, category_id) VALUES(1, 'Titanic', 1);
+INSERT INTO item(user_id, item, category_id) VALUES(1, '', 2);
+INSERT INTO item(user_id, item, category_id) VALUES(1, '', 3);
+INSERT INTO item(user_id, item, category_id) VALUES(1, '', 4);
+INSERT INTO item(user_id, item, category_id) VALUES(2, 'Minions', 1);
+INSERT INTO item(user_id, item, category_id) VALUES(2, '', 2);
+INSERT INTO item(user_id, item, category_id) VALUES(2, '', 3);
+INSERT INTO item(user_id, item, category_id) VALUES(2, '', 4);
+INSERT INTO item(user_id, item, category_id) VALUES(3, 'StarWars', 1);
+INSERT INTO item(user_id, item, category_id) VALUES(3, '', 2);
+INSERT INTO item(user_id, item, category_id) VALUES(3, '', 3);
+INSERT INTO item(user_id, item, category_id) VALUES(3, '', 4);
+INSERT INTO item(user_id, item, category_id) VALUES(4, 'Loop', 1);
+INSERT INTO item(user_id, item, category_id) VALUES(4, '', 2);
+INSERT INTO item(user_id, item, category_id) VALUES(4, '', 3);
+INSERT INTO item(user_id, item, category_id) VALUES(4, '', 4);

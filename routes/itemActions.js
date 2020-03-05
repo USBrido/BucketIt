@@ -3,7 +3,7 @@ const router  = express.Router();
 
 module.exports = (db) => {
   //Deletes items ()
-  router.post("/urls/:shortURL/delete", (req, res) => {
+  router.post("/main/:id/:item/delete", (req, res) => {
     const user = req.session.userId;
     if (user) {
       delete itemdb[req.params.item];
@@ -12,20 +12,5 @@ module.exports = (db) => {
       res.redirect("/login")
     }
   });
-
-  // router.get("/", (req, res) => {
-  //   let query = `SELECT * FROM widgets`;
-  //   console.log(query);
-  //   db.query(query)
-  //     .then(data => {
-  //       const widgets = data.rows;
-  //       res.json({ widgets });
-  //     })
-  //     .catch(err => {
-  //       res
-  //         .status(500)
-  //         .json({ error: err.message });
-  //     });
-  // });
   return router;
 };

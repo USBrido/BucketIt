@@ -10,21 +10,10 @@ module.exports = (db) => {
     if (helper.emailVerify(req.body.email)) {
       return res.render("register", { error: 'Email already exists, please login' });
     };
-    //to adjust afetr bcrypt
+    //to adjust after bcrypt
     let newUser = { userId: userId, email: req.body.email, password: bcrypt.hashSync(req.body.password, 10) };
     users[userId] = newUser;
     req.session.userId = userId;
     res.redirect("/main/:userId"); //to adjust
-  //   db.query(`SELECT * FROM users;`)
-  //     .then(data => {
-  //       const users = data.rows;
-  //       res.json({ users });
-  //     })
-  //     .catch(err => {
-  //       res
-  //         .status(500)
-  //         .json({ error: err.message });
-  //     });
-  // });
   return router;
 })};

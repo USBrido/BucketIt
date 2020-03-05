@@ -10,7 +10,6 @@ module.exports = (db) => {
     if (helper.emailVerify(req.body.email)) {
       return res.render("register", { error: 'Email already exists, please login' });
     };
-    // const userId = generateRandomString();
     //to adjust afetr bcrypt
     let newUser = { userId: userId, email: req.body.email, password: bcrypt.hashSync(req.body.password, 10) };
     users[userId] = newUser;

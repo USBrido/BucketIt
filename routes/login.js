@@ -8,7 +8,7 @@ module.exports = (db) => {
   //set login
   router.get("/login", (req, res) => {
     if (req.session.userId) {
-      res.redirect('/main/userId');
+      res.redirect('/main/:userId');
     } else {
       res.render("/main");
     };

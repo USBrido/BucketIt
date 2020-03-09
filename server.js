@@ -41,8 +41,8 @@ app.use(express.static("public"));
 
 // Routes for resources
 const usersRoutes = require("./routes/users");
-// const registerRoutes = require("./routes/register");
-// const loginRoutes = require("./routes/login");
+const registerRoutes = require("./routes/register");
+const loginRoutes = require("./routes/login");
 const logoutRoutes = require("./routes/logout");
 // // Mounted Routes
 app.use("/users", usersRoutes(db));

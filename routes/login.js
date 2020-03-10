@@ -1,29 +1,39 @@
-const express = require('express');
-const router  = express.Router();
+const express = require("express");
+const router = require("express").Router();
 const helper = require("../helper");
-const bcrypt = require ('bcrypt');
+const bcrypt = require("bcrypt");
 
-
-module.exports = (db) => {
+module.exports = db => {
   //set login
   router.get("/login", (req, res) => {
     if (req.session.userId) {
-      res.redirect('/main/:userId');
+      res.redirect("/:userId");
     } else {
-      res.render("/main");
-    };
-
-    //Set login with cookied
+      let templateVars = {
+        user: { id: undefined, name: null }
+      };
+      res.render("..views/login", templateVars);
+    }
+  });
+  //Set login with cookied
   router.post("/login", (req, res) => {
-    let email = req.body.email;
-    let password = req.body.password;
-    let user = helper.emailVerify(email, users);
-    if (user && bcrypt.compareSync(password, user.password)) {
-      req.session.userId = userId;
-      req.redirect('/main/:userId')
-    } else {
-      res.render('/', {error: 'Email and password combination is invalid'})
-    };
+    db.query(`
+      SELECT id, email, password
+      FROM users
+      WHERE email = $1;`,
+    [req.body.email])
+      .then(data => {
+        const user = data.rows[0];
+        if (user && bcrypt.compareSync(req.body.password, user.password)) {
+          req.session.userId = user.Id;
+          req.redirect("/:userId");
+        } else {
+          res.render("/", { error: "Email and password combination is invalid" });
+        }
+      })
+      .catch(err => {
+        res.status(500).json({error: err.message});
+      });
   });
   return router;
-})};
+};

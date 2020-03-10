@@ -30,8 +30,11 @@ module.exports = (db) => {
     }
     // to adjust after bcrypt
     let password = bcrypt.hashSync(req.body.password, 10);
-    db.query('INSERT INTO user(name, email, password) VALUES($1, $2, $3) RETURNING *',
-      [req.body.name, req.body.email, password])
+    db.query(`
+      INSERT INTO user(name, email, password)
+      VALUES($1, $2, $3)
+      RETURNING *`,
+    [req.body.name, req.body.email, password])
       .then(data => {
         const newUser = data.rows[0];
         req.session.userId = newUser.id;

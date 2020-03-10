@@ -18,8 +18,27 @@ module.exports = (db) => {
 
   //route that does the registering
   router.post("/", (req, res) => {
-    // const password = req.body.password;
-    // const newPassword =
+    const password = bcrypt.hashSync(req.body.password, 10);
+    db.query(`
+      SELECT email, password
+      FROM users
+      WHERE id = $1;`,
+    [req.session.userId])
+      .then(data => {
+        const user = data.rows[0];
+        if (!bcrypt.compareSync(req.body.password, user.password)) {
+          req.redirect("/:userId");
+        } else {
+          db.query(`
+          UPDATE users
+          SET name = $1, password = $2,
+          WHERE id = $3`,
+          [req.body.name, password, req.session.userId])
+            .then(() => {
+              res.redirect('/:userId')
+            });
+        }
+      });
   });
   return router;
 };

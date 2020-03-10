@@ -58,7 +58,7 @@ app.use("/users", usersRoutes(db));
 app.use("/register", registerRoutes(db));
 app.use("/login", loginRoutes(db));
 app.use("/logout", logoutRoutes(db));
-// app.use("/todos", todosRoutes(db));
+app.use("/todos", todosRoutes(db));
 app.use("/update", updateRoutes(db));
 
 // Home page

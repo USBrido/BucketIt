@@ -16,7 +16,7 @@ module.exports = (db) => {
       });
       if (data.error === "Item not found!") {
         console.log("Item not found!");
-//film and tv
+      //film and tv
       } else if (media.some(result => {
         if (roughresult.includes(result)) {
           console.log(result);
@@ -28,7 +28,7 @@ module.exports = (db) => {
           .then(data => {
             res.redirect('/todos');
           });
-//books
+      //books
       } else if (books.some(result => {
         if (roughresult.includes(result)) {
           console.log(result);
@@ -40,7 +40,7 @@ module.exports = (db) => {
           .then(data => {
             res.redirect('/todos');
           });
-//food and restaurants
+      //food and restaurants
       } else if (food.some(result => {
         if (roughresult.includes(result)) {
           console.log(result);

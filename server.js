@@ -46,20 +46,20 @@ app.use(
 app.use(express.static("public"));
 
 // Routes for resources
-const usersRoutes = require("./routes/users");
-const registerRoutes = require("./routes/register");
-const loginRoutes = require("./routes/login");
-const logoutRoutes = require("./routes/logout");
-const todosRoutes = require('./routes/todos');
-const updateRoutes = require('./routes/update');
+const usersRoutes = require("./routes/users.js");
+const registerRoutes = require("./routes/register.js");
+const loginRoutes = require("./routes/login.js");
+const logoutRoutes = require("./routes/logout.js");
+const todosRoutes = require('./routes/todos.js');
+const updateRoutes = require('./routes/update.js');
 
 // // Mounted Routes
-app.use("/users", usersRoutes(db));
-app.use("/register", registerRoutes(db));
-app.use("/login", loginRoutes(db));
-app.use("/logout", logoutRoutes(db));
-app.use("/todos", todosRoutes(db));
-app.use("/update", updateRoutes(db));
+app.use("./users", usersRoutes(db));
+app.use("./register", registerRoutes(db));
+app.use("./login", loginRoutes(db));
+app.use("./logout", logoutRoutes(db));
+app.use("./todos", todosRoutes(db));
+app.use("./update", updateRoutes(db));
 
 // Home page
 app.get("/", (req, res) => {

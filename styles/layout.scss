@@ -2,8 +2,20 @@
 
 body {
   background-color: #EEE;
-
+  $enable-gradients: true;
   h1 {
     color: #244751;
   }
+}
+
+#navbar-outer {
+background: linear-gradient(90deg,#00c4cc,#7d2ae8);
+}
+
+#navbarNavAltMarkup {
+  justify-content: flex-end;
+}
+
+.container {
+  margin-top: 1em;
 }

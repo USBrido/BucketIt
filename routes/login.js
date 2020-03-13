@@ -6,17 +6,19 @@ const bcrypt = require("bcrypt");
 module.exports = db => {
   //set login
   router.get("/login", (req, res) => {
+    console.log("GET /login");
     if (req.session.userId) {
       res.redirect("/:userId");
     } else {
       let templateVars = {
         user: { id: undefined, name: null }
       };
-      res.render("..views/login", templateVars);
+      res.render("/", templateVars);
     }
   });
-  //Set login with cookied
+  //Set login with cookie
   router.post("/login", (req, res) => {
+    console.log("POST /login");
     db.query(`
       SELECT id, email, password
       FROM users

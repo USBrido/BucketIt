@@ -5,6 +5,7 @@ require("dotenv").config();
 const PORT = process.env.PORT || 8080;
 const ENV = process.env.ENV || "development";
 const express = require("express");
+
 const bodyParser = require("body-parser");
 const sass = require("node-sass-middleware");
 const app = express();
@@ -33,6 +34,7 @@ app.use(
 app.use(morgan("dev"));
 
 app.set("view engine", "ejs");
+// app.set('views', __dirname + '/views'); //trying to render the partials
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(
   "/styles",
@@ -46,12 +48,12 @@ app.use(
 app.use(express.static("public"));
 
 // Routes for resources
-const usersRoutes = require("./routes/users.js");
-const registerRoutes = require("./routes/register.js");
-const loginRoutes = require("./routes/login.js");
-const logoutRoutes = require("./routes/logout.js");
-const todosRoutes = require('./routes/todos.js');
-const updateRoutes = require('./routes/update.js');
+const usersRoutes = require("./routes/users");
+const registerRoutes = require("./routes/register");
+const loginRoutes = require("./routes/login");
+const logoutRoutes = require("./routes/logout");
+const todosRoutes = require('./routes/todos');
+const updateRoutes = require('./routes/update');
 
 // // Mounted Routes
 app.use("./users", usersRoutes(db));

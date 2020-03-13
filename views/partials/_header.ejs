@@ -1,5 +1,6 @@
+<!-- Pay attention to the paths of the file you are using -->
 <header>
-  <nav class="navbar navbar-expand-md navbar-dark bg-success">
+  <nav id="navbar-outer" class="navbar navbar-expand-md navbar-dark bg-success">
     <a class="navbar-brand" href="/urls">BucketIt</a>
     <button
       class="navbar-toggler"
@@ -16,26 +17,24 @@
       <div class="navbar-nav">
         <% if(typeof user !== 'undefined'){ %>
 
-        <p class="nav-item nav-text" style="margin-right: 10px;">
-          You are logged in as:
-        </p>
+
 
         <div>
-          <%- include('partials/_update') %>
         </div>
-
-        <form method="POST" action="/logout" style="display: flex-end">
-          <button type="submit" class="btn btn-primary">Logout</button>
-        </form>
 
         <div>
-          <%- include('./partials/_registerlogin') %>
-        </div>
-        <div>
-          <%- include('./partials/_test')%>
+          <%- include _registerlogin %>
         </div>
 
-        <% } else{ %> <% } %>
+
+        <% } else{ %>
+          <p class="nav-item nav-text" style="margin-right: 10px;">
+              You are logged in as:
+            </p>
+          <form method="POST" action="/logout" style="display: flex-end; color: #2a43e8;">
+            <button type="submit" class="btn btn-primary">Logout</button>
+          </form>
+        <% } %>
       </div>
     </div>
   </nav>

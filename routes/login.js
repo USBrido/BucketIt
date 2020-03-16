@@ -4,7 +4,7 @@ const helper = require("../helper");
 const bcrypt = require("bcrypt");
 
 module.exports = db => {
-  //set login
+  //set login if user is logged or not
   router.get("/login", (req, res) => {
     console.log("GET /login");
     if (req.session.userId) {

@@ -30,7 +30,10 @@
         <% } else{ %>
           <p class="nav-item nav-text" style="margin-right: 10px;">
               You are logged in as:
-            </p>
+          </p>
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#update">
+              Update
+          </button>
           <form method="POST" action="/logout" style="display: flex-end; color: #2a43e8;">
             <button type="submit" class="btn btn-primary">Logout</button>
           </form>

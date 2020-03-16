@@ -16,9 +16,9 @@ Due to some syntax issues and structural bugs during development parts of the co
 ## Back-end - Current issues
 
 1. /Register route doesn't advance. Console displays "An invalid form control with name='' is not focusable."
-(docs/invalid_form_control.png)
+(https://github.com/USBrido/BucketIt/blob/master/docs/invalid_form_control.png)
   According to research it has to do with a failed validation on the form, but the solutions tested previously don't seem to work;
-2. /Login route not working. (Front end button clicks, but seems unable to find the file);
+2. /Login route not working. (Front end button clicks, but seems unable to find the route file);
 3. /Update route hasn't been tested since Register doesn't want to work. Code has been written, but unsure if behaves properly;
 4. Logic for the API tested, but not implemented, nor connected to the front-end. (It has worked on Postman, but the logic that filters the results hasn't been developed);
 5. /Logout route created but untested since neither Login or Register work.

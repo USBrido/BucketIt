@@ -34,7 +34,7 @@ app.use(
 app.use(morgan("dev"));
 
 app.set("view engine", "ejs");
-// app.set('views', __dirname + '/views'); //trying to render the partials
+app.set('views', __dirname + '/views'); //trying to render the partials
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(
   "/styles",
@@ -56,12 +56,12 @@ const todosRoutes = require('./routes/todos');
 const updateRoutes = require('./routes/update');
 
 // // Mounted Routes
-app.use("./users", usersRoutes(db));
-app.use("./register", registerRoutes(db));
-app.use("./login", loginRoutes(db));
-app.use("./logout", logoutRoutes(db));
-app.use("./todos", todosRoutes(db));
-app.use("./update", updateRoutes(db));
+app.use("/users", usersRoutes(db));
+app.use("/register", registerRoutes(db));
+app.use("/login", loginRoutes(db));
+app.use("/logout", logoutRoutes(db));
+app.use("/todos", todosRoutes(db));
+app.use("/update", updateRoutes(db));
 
 // Home page
 app.get("/", (req, res) => {

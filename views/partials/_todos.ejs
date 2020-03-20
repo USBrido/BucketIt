@@ -1,4 +1,6 @@
 <div class="container">
+    <% JSON.stringify(data) %>
+
     <div class="row">
       <div class="col-sm">
           <div class="card">
@@ -6,9 +8,11 @@
                 Fils and TV Series
               </div>
               <ul class="list-group list-group-flush">
-                <!-- <li class="list-group-item">Cras justo odio</li>
-                <li class="list-group-item">Dapibus ac facilisis in</li>
-                <li class="list-group-item">Vestibulum at eros</li> -->
+              <% for (const item of data) { %>
+                <% if item.category_id === 1) { %>
+                <li><%= item.input %></li>
+                <%}%>
+                <%}%>
               </ul>
             </div>
       </div>
@@ -18,9 +22,11 @@
                 Books
               </div>
               <ul class="list-group list-group-flush">
-                <!-- <li class="list-group-item">Cras justo odio</li>
-                <li class="list-group-item">Dapibus ac facilisis in</li>
-                <li class="list-group-item">Vestibulum at eros</li> -->
+                  <% for (const item of data) { %>
+                    <% if item.category_id === 2) { %>
+                    <li><%= item.input %></li>
+                    <%}%>
+                    <%}%>
               </ul>
             </div>
       </div>
@@ -30,9 +36,11 @@
                 Restaurants
               </div>
               <ul class="list-group list-group-flush">
-                <!-- <li class="list-group-item">Cras justo odio</li>
-                <li class="list-group-item">Dapibus ac facilisis in</li>
-                <li class="list-group-item">Vestibulum at eros</li> -->
+                  <% for (const item of data) { %>
+                    <% if item.category_id === 3) { %>
+                    <li><%= item.input %></li>
+                    <%}%>
+                    <%}%>
               </ul>
             </div>
       </div>
@@ -42,9 +50,11 @@
                 Products
               </div>
               <ul class="list-group list-group-flush">
-                <!-- <li class="list-group-item">Cras justo odio</li>
-                <li class="list-group-item">Dapibus ac facilisis in</li>
-                <li class="list-group-item">Vestibulum at eros</li> -->
+                  <% for (const item of data) { %>
+                    <% if item.category_id === 1) { %>
+                    <li><%= item.input %></li>
+                    <%}%>
+                    <%}%>
               </ul>
             </div>
       </div>

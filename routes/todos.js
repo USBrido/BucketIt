@@ -5,7 +5,23 @@ const cookieSession = require('cookie-session');
 const walkObject = require("walk-object");
 
 module.exports = (db) => {
-  router.post('/', (req, res)  => {
+  //displays item in the todo view
+  router.get('/todos', (req, res) => {
+    let templatevars = {};
+    db.query('SELECT * FROM users WHERE id = $1', [req.session.user_id])
+      .then((data) => {
+        templatevars.user = data.rows[0];
+        db.query('SELECT * FROM items WHERE id = $1', [req.session.user_id])
+          .then((data) => {
+            templatevars.user = data.rows;
+            res.removeHeader('items', templatevars);
+          });
+      });
+  });
+
+
+  //posts item to database
+  router.post('/todos', (req, res)  => {
     const item = req.body.input;
     callItem(item).then(data => {
       let roughresult = '';
@@ -48,13 +64,13 @@ module.exports = (db) => {
         }
       })) {
         db.query(`INSERT INTO items(input, category_id, user_id) VALUES($1, $2, $3) RETURNING *;`,
-          [req.body.input, categories['books'], req.session.user_id])
+          [req.body.input, categories['restaurant'], req.session.user_id])
           .then(data => {
             res.redirect('/todos');
           });
       }  else {
         db.query(`INSERT INTO items(input, category_id, user_id) VALUES($1, $2, $3) RETURNING *;`,
-          [req.body.input, categories['books'], req.session.user_id])
+          [req.body.input, categories['products'], req.session.user_id])
           .then(data => {
             res.redirect('/todos');
           });
@@ -64,9 +80,9 @@ module.exports = (db) => {
   });
 
   const categories = {};
-  db.query(`SELECT id, title FROM categories;`).then(data => {
+  db.query(`SELECT id, item FROM categories;`).then(data => {
     for (let row of data.rows) {
-      categories[row.title] = row.id;
+      categories[row.item] = row.id;
     }
   });
 

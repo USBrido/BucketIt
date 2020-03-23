@@ -1,11 +1,10 @@
-const express = require("express");
 const router = require("express").Router();
 const helper = require("../helper");
 const bcrypt = require("bcrypt");
 
 module.exports = db => {
   //set login if user is logged or not
-  router.get("/login", (req, res) => {
+  router.get("/", (req, res) => {
     console.log("GET /login");
     if (req.session.userId) {
       res.redirect("/:userId");
@@ -17,7 +16,7 @@ module.exports = db => {
     }
   });
   //Set login with cookie
-  router.post("/login", (req, res) => {
+  router.post("/", (req, res) => {
     console.log("POST /login");
     db.query(`
       SELECT id, email, password
@@ -30,7 +29,7 @@ module.exports = db => {
           req.session.userId = user.Id;
           req.redirect("/:userId");
         } else {
-          res.render("/", { error: "Email and password combination is invalid" });
+          res.render("/register", { error: "Email and password combination is invalid" });
         }
       })
       .catch(err => {

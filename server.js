@@ -5,28 +5,23 @@ require("dotenv").config();
 const PORT = process.env.PORT || 8080;
 const ENV = process.env.ENV || "development";
 const express = require("express");
-
+const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const sass = require("node-sass-middleware");
 const app = express();
 const morgan = require("morgan");
-const bcrypt = require("bcrypt");
-const cookieSession = require("cookie-session");
+const session = require("express-session");
 
 // PG database client/connection setup
 const { Pool } = require("pg");
 const dbParams = require("./lib/db.js");
 const db = new Pool(dbParams);
-const callItem = require("./callItem.js");
 db.connect();
 
 //Cookie-Session setup
-app.use(
-  cookieSession({
-    name: "session",
-    keys: ["userId"]
-  })
-);
+app.use(cookieParser());
+app.use(session({secret: 'midtest' ,saveUninitialized: false, resave: false}));
+
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
@@ -50,7 +45,7 @@ app.use(express.static("public"));
 // Routes for resources
 const usersRoutes = require("./routes/users");
 const registerRoutes = require("./routes/register");
-const loginRoutes = require("./routes/login");
+const loginRoutes = require("../BucketIt/routes/login");
 const logoutRoutes = require("./routes/logout");
 const todosRoutes = require('./routes/todos');
 const updateRoutes = require('./routes/update');

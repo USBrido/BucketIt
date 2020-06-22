@@ -1,49 +1,33 @@
 <!-- Pay attention to the paths of the file you are using -->
 <header>
-  <nav id="navbar-outer" class="navbar navbar-expand-md navbar-dark bg-success">
-    <a class="navbar-brand" href="/urls">BucketIt</a>
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-toggle="collapse"
-      data-target="#navbarNavAltMarkup"
-      aria-controls="navbarNavAltMarkup"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
-        <% if(typeof user !== 'undefined'){ %>
+  <div>
+      <nav id="navbar-outer" class="navbar">
+          <a class="navbar-brand" >BucketIt</a>
 
-
-
-        <div>
+        <div class="in-line my-2 my-sm-0">
+        <% if (user) {%>
+            <p class="nav-item nav-text" style="margin-right: 10px;">
+                You are logged in as:
+            </p>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#update">
+                Update
+            </button>
+            <form method="POST" action="/logout" style="display: flex-end; color: #2a43e8;">
+              <button type="submit" class="btn btn-primary">Logout</button>
+            </form>
+        <% }  else { %>
+            <div>
+            <%- include _registerlogin %>
+            </div>
+            <% }%>
         </div>
-
-        <div>
-          <%- include _registerlogin %>
-        </div>
-
-
-        <% } else{ %>
-          <p class="nav-item nav-text" style="margin-right: 10px;">
-              You are logged in as:
-          </p>
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#update">
-              Update
-          </button>
-          <form method="POST" action="/logout" style="display: flex-end; color: #2a43e8;">
-            <button type="submit" class="btn btn-primary">Logout</button>
-          </form>
-        <% } %>
-      </div>
-    </div>
-  </nav>
-<div>
-  <form action="/todos" method="POST">
-<input type="text" class="form-control" placeholder="Search for you bucket list here" aria-label="Item" aria-describedby="item-search">
-</form>
-</div>
+      </nav>
+  </div>
+<% if (user) {%>
+  <div>
+    <form action="/todos" method="POST">
+      <input type="text" class="form-control" placeholder="Search for you bucket list here" aria-label="Item" aria-describedby="item-search">
+    </form>
+  </div>
+<% }%>
 </header>

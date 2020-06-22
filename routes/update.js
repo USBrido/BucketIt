@@ -35,7 +35,7 @@ module.exports = (db) => {
           WHERE id = $3`,
           [req.body.name, password, req.session.userId])
             .then(() => {
-              res.redirect('/:userId')
+              res.redirect('/:userId');
             });
         }
       });

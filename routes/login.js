@@ -1,40 +1,42 @@
 const router = require("express").Router();
-const helper = require("../helper");
 const bcrypt = require("bcrypt");
 
-module.exports = db => {
+module.exports = (db) => {
   //set login if user is logged or not
   router.get("/", (req, res) => {
-    console.log("GET /login");
-    if (req.session.userId) {
-      res.redirect("/:userId");
-    } else {
-      let templateVars = {
-        user: { id: undefined, name: null }
-      };
-      res.render("/", templateVars);
+    if (req.session.isLogged) {
+      res.redirect("/");
     }
   });
-  //Set login with cookie
+
   router.post("/", (req, res) => {
-    console.log("POST /login");
+    console.log("Print", req.body);
+    const { email, password } = req.body;
+
+    if (!email || !password) {
+      return res.status(500).json(`Email and Password combination don't match`);
+    }
+
     db.query(`
-      SELECT id, email, password
+      SELECT  id, email, password
       FROM users
-      WHERE email = $1;`,
-    [req.body.email])
+      WHERE email = $1;`,[email])
       .then(data => {
-        const user = data.rows[0];
-        if (user && bcrypt.compareSync(req.body.password, user.password)) {
-          req.session.userId = user.Id;
-          req.redirect("/:userId");
+        console.log(data);
+        const isValid = bcrypt.compareSync(password, data.rows[0].password);
+        if (isValid) {
+          let session = req.session;
+          session.isLogged = true;
+          session.email = email;
+          return req.redirect("/");
         } else {
-          res.render("/register", { error: "Email and password combination is invalid" });
+          res.redirect(400, "/register");
         }
       })
-      .catch(err => {
-        res.status(500).json({error: err.message});
+      .catch(error => {
+        res.status(500).json(`Error login in`);
       });
   });
+
   return router;
 };

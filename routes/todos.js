@@ -80,9 +80,9 @@ module.exports = (db) => {
   });
 
   const categories = {};
-  db.query(`SELECT id, item FROM categories;`).then(data => {
+  db.query(`SELECT id, category FROM categories;`).then(data => {
     for (let row of data.rows) {
-      categories[row.item] = row.id;
+      categories[row.category] = row.id;
     }
   });
 

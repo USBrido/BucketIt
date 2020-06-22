@@ -9,7 +9,7 @@ module.exports = (db) => {
       delete itemdb[req.params.item];
       res.redirect('/:userid');
     } else {
-      res.redirect("/login")
+      res.redirect("/login");
     }
   });
   return router;

@@ -23,9 +23,11 @@
   <body>
       <% include ./partials/_header %>
 
-      <% if(typeof user === 'undefined'){ %> <!-- switch back when tests are done-->
 
-      <%}%>
+
+      <% if(!user){ %>
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTCDA4k7rpTvM_v6U7oW3rlbzP0XYRbULqSV_iITiioCkyKLITg&usqp=CAU" alt="bucket">
+        <%}%>
 
 
 <!-- Login/Register -->

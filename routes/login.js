@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 
 module.exports = (db) => {
   //set login if user is logged or not
@@ -28,7 +28,7 @@ module.exports = (db) => {
           let session = req.session;
           session.isLogged = true;
           session.email = email;
-          return req.redirect("/");
+          res.redirect("/");
         } else {
           res.redirect(400, "/register");
         }

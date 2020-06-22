@@ -15,10 +15,8 @@ module.exports = (db) => {
         const users = data.rows;
         res.json({ users });
       })
-      .catch(err => {
-        res
-          .status(500)
-          .json({ error: err.message });
+      .catch(error => {
+        res.status(500).json("unable to reach database");
       });
   });
   return router;
